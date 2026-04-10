@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://b5e1r2soagjcc"]
 
 [ext_resource type="Script" uid="uid://c1l00t7w8csdl" path="res://math_renderer/math_renderer.gd" id="1_4k6sn"]
+[ext_resource type="Script" uid="uid://clmpo36uaprwd" path="res://math_renderer/objects/line.gd" id="2_1e4qy"]
+[ext_resource type="Script" uid="uid://bg6y2ga0ex1b" path="res://math_renderer/objects/circle.gd" id="3_wrt2o"]
 
 [node name="MathRenderer" type="Control" unique_id=942960041]
 layout_mode = 3
@@ -10,3 +12,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4k6sn")
+
+[node name="Circle" type="Node" parent="." unique_id=154076372]
+script = ExtResource("3_wrt2o")
+position = Vector2(5, 0)
+metadata/_custom_type_script = "uid://bg6y2ga0ex1b"
+
+[node name="Circle2" type="Node" parent="." unique_id=1309300069]
+script = ExtResource("3_wrt2o")
+color = Color(0, 1, 0, 1)
+metadata/_custom_type_script = "uid://bg6y2ga0ex1b"
+
+[node name="Line" type="Node" parent="." unique_id=1361556223]
+script = ExtResource("2_1e4qy")
+m = 0.0
+color = Color(0, 0, 1, 1)
+metadata/_custom_type_script = "uid://clmpo36uaprwd"

@@ -1,36 +1,52 @@
 extends Control
 
 var view: Rect2 = Rect2(-5, -5, 10, 10)
-var cm: float = 1.0
+var cm: float = 0.0
 var cb: float = 0.0
-
 
 func _process(delta: float) -> void:
 	view.size = size / 60
 	var dir = Input.get_vector(&"ui_left", &"ui_right", &"ui_down", &"ui_up")
-	view.position += delta * dir * 60 * 0.125 * Vector2(1.0, size.x / size.y)
-	cm += Input.get_axis(&"test_left", &"test_right") * 60 * delta * 0.25
+	view.position += delta * dir * 60 * Vector2(view.size.x / size.x, view.size.y / size.y)
+	cm += Input.get_axis(&"test_left", &"test_right") * 60 * delta * 0.085
 	cb += Input.get_axis(&"test_down", &"test_up") * 60 * delta * 0.125
+	$Line.m = snapped(cm, 0.25)
+	$Line.b = snapped(cb, 1)
 	queue_redraw()
 
 func _draw() -> void:
-	draw_grid(2)
-	draw_axis(Vector2i.RIGHT, 1)
+	draw_grid(Vector2i.UP, 1)
+	draw_grid(Vector2i.RIGHT, 1)
 	draw_axis(Vector2i.UP, 1)
-	var p = Vector2(sqrt(2)/2,-sqrt(2)/2)#glob(get_global_mouse_position())
-	graph_line(cm, cb)
-	graph_line(2, 3)
-	graph_circle(1, p)
-	var i = circle_line_intersects(cm, cb, 1, p)
-	var j = circle_line_intersects(2, 3, 1, p)
-	var c = line_line_intersects(2, 3, cm, cb)
-	graph_points(i)
-	graph_points(j)
-	graph_points(c)
+	draw_axis(Vector2i.RIGHT, 1)
+	
+	var intersections_drawn: Dictionary[int, bool] = {}
+	for node in get_children():
+		if node is not Shape: continue
+		if node is Circle: graph_circle(node.radius, node.position, node.color)
+		if node is Line: graph_line(node.m, node.b, node.color)
+		
+	for node in get_children():
+		if node is not Shape: continue
+		for sibling in get_children():
+			if intersections_drawn.has(hash(sibling) + hash(node)):
+				continue
+			if sibling == node: continue
+			if node is not Shape: continue
+			var p: Array[Vector2]
+			if node is Circle and sibling is Line:
+				p = circle_line_intersects(sibling.m, sibling.b, node.radius, node.position)
+			if sibling is Circle and node is Line:
+				p = circle_line_intersects(node.m, node.b, sibling.radius, sibling.position)
+			if node is Line and sibling is Line:
+				p = line_line_intersects(node.m, node.b, sibling.m, sibling.b)
+			intersections_drawn[hash(sibling) + hash(node)] = true
+			graph_points(p)
 
 func graph_points(points: Array[Vector2]) -> void:
 	for point: Vector2 in points:
-		draw_circle(locv(point), 5, Color.BLACK)
+		draw_circle(locv(point), 5, Color.BLACK,  true, -1.0, true)
+
 func circle_line_intersects(m: float, b: float, r: float, p: Vector2) -> Array[Vector2]:
 	var a = 1 + m*m
 	var _b = 2 * (m*b - m*p.y - p.x)
@@ -54,36 +70,45 @@ func line_line_intersects(m1: float, b1: float, m2: float, b2: float) -> Array[V
 	var x: float = (b1 - b2) / (m2 - m1)
 	return [Vector2(x, x*m1 + b1)]
 
-func graph_circle(r: float, p: Vector2):
+func graph_circle(r: float, p: Vector2, color):
 	var mx = (size.x / view.size.x)
 	var my = (size.y / view.size.y)
-	draw_ellipse(locv(p), r * mx, r * my, Color.RED, false)
+	draw_ellipse(locv(p), r * mx, r * my, color, false, 1, true)
 
-func graph_line(m: float, b: float):
-	var p1 = Vector2(view.position.x, view.position.x * m + b)
-	var p2 = Vector2(view.end.x, view.end.x * m + b)
-	draw_line(locv(p1), locv(p2),Color.RED)
+func graph_line(m: float, b: float, color: Color):
+	var p1 = loc(view.position.x, view.position.x * m + b)
+	var p2 = loc(view.end.x, view.end.x * m + b)
+	draw_line(p1, p2, color, 1, true)
 
-func draw_grid(steps):
-	### TODO: Ts did not work
-	pass
-		
+func draw_grid(axis: Vector2i, steps: float):
+	if axis == Vector2i.RIGHT:
+		var x = view.position.x - fmod(view.position.x, steps)
+		while (x < view.end.x):
+			draw_line(Vector2(locx(x), 0), Vector2(locx(x), size.y), Color.GRAY)
+			x += steps
+	if axis == Vector2i.UP:
+		var y = view.position.y - fmod(view.position.y, steps)
+		while (y < view.end.y):
+			draw_line(Vector2(0, locy(y)), Vector2(size.x, locy(y)), Color.GRAY)
+			y += steps
+	
 func draw_axis(axis: Vector2i, steps: int):
 	var n = 0.125
-	var rang = range(view.position.y, view.end.y + 1, steps) \
-	if axis == Vector2i.UP else\
-	range(view.position.x, view.end.x + 1, steps)
-	
-	for c in rang:
-		if axis == Vector2i.UP:
-			draw_line(loc(-n, c),loc(+n, c),Color.BLACK)
-		if axis == Vector2i.RIGHT:
-			draw_line(loc(c, -n),loc(c, +n),Color.BLACK)
 	
 	if axis == Vector2i.UP:
 		draw_line(loc(0,view.position.y), loc(0,view.end.y), Color.BLACK)
+		
+		var y = view.position.y - fmod(view.position.y, steps)
+		while (y < view.end.y):
+			draw_line(loc(-n, y), loc(+n, y), Color.BLACK)
+			y += steps
 	if axis == Vector2i.RIGHT:
 		draw_line(loc(view.position.x, 0), loc(view.end.x, 0), Color.BLACK)
+		
+		var x = view.position.x - fmod(view.position.x, steps)
+		while (x < view.end.x):
+			draw_line(loc(x, -n), loc(x, +n), Color.BLACK)
+			x += steps
 	
 func locx(x) -> float:
 	return loc(x, 0).x
