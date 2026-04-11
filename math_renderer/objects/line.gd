@@ -4,6 +4,11 @@ class_name Line
 @export var m: float = 1.0
 @export var b: float = 0.0
 
+func _init(_m: float = 1.0, _b: float = 0.0) -> void:
+	m = _m
+	b = _b
+
+
 func set_from_points(one: Vector2, two: Vector2) -> void:
 	m = (two.y - one.y) / (two.x - one.x)
 	b = one.y - (m * one.x)

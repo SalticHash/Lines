@@ -1,19 +1,20 @@
 extends Control
 
-var view: Rect2 = Rect2(-5, -5, 10, 10)
+var view: Rect2 = Rect2(-5 * 2, -2.5 * 2, 10 * 2, 5 * 2)
 var cm: float = 0.0
 var cb: float = 0.0
 
+
 func _process(delta: float) -> void:
-	view.size = size / 60
+	#view.size = size / 60
 	var dir = Input.get_vector(&"ui_left", &"ui_right", &"ui_down", &"ui_up")
 	view.position += delta * dir * 60 * Vector2(view.size.x / size.x, view.size.y / size.y)
-	cm += Input.get_axis(&"test_left", &"test_right") * delta * TAU * (1.0/2.0)
-	cb += Input.get_axis(&"test_down", &"test_up") * 60 * delta * 0.125
-	var a = snappedf(cm, PI/8.0)
-	if abs(tan(a)) < PI:
-		$Line.m = tan(a)
-		$Line.b = 1 / sin(PI / 2 - a) - ($Line.m * 0)
+	#cm += Input.get_axis(&"test_left", &"test_right") * delta * TAU * (1.0/2.0)
+	#cb += Input.get_axis(&"test_down", &"test_up") * 60 * delta * 0.125
+	#var a = snappedf(cm, PI/8.0)
+	#if abs(tan(a)) < PI:
+		#$Line.m = tan(a)
+		#$Line.b = 1 / sin(PI / 2 - a) - ($Line.m * 0)
 	queue_redraw()
 
 func _draw() -> void:
@@ -30,6 +31,9 @@ func _draw() -> void:
 		
 	for node in get_children():
 		if node is not Shape: continue
+		if node is Point:
+			graph_points([node.position], node.color)
+			continue
 		for sibling in get_children():
 			if intersections_drawn.has(hash(sibling) + hash(node)):
 				continue
@@ -45,9 +49,9 @@ func _draw() -> void:
 			intersections_drawn[hash(sibling) + hash(node)] = true
 			graph_points(p)
 
-func graph_points(points: Array[Vector2]) -> void:
+func graph_points(points: Array[Vector2], color: Color = Color.BLACK) -> void:
 	for point: Vector2 in points:
-		draw_circle(locv(point), 5, Color.BLACK,  true, -1.0, true)
+		draw_circle(locv(point), 5, color,  true, -1.0, true)
 
 func circle_line_intersects(m: float, b: float, r: float, p: Vector2) -> Array[Vector2]:
 	var a = 1 + m*m

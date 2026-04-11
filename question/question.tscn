@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://coeg0r8mt3scm"]
 
 [ext_resource type="PackedScene" uid="uid://b5e1r2soagjcc" path="res://main_menu/math_renderer.tscn" id="1_gx327"]
+[ext_resource type="Script" uid="uid://c6g6vh46bg7vj" path="res://question/question.gd" id="1_t81u5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gx327"]
 bg_color = Color(1, 1, 1, 1)
@@ -44,6 +45,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_gx327")
+script = ExtResource("1_t81u5")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1794951517]
 layout_mode = 1
@@ -58,7 +60,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 32
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=359418146]
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=359418146]
+unique_name_in_owner = true
 layout_mode = 2
 text = "¿La linea es perpendicular?"
 
@@ -66,7 +69,8 @@ text = "¿La linea es perpendicular?"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer" unique_id=573443328]
+[node name="Desc" type="RichTextLabel" parent="VBoxContainer/HBoxContainer" unique_id=573443328]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.25
@@ -93,6 +97,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MathRenderer" parent="VBoxContainer/HBoxContainer/RendererPanel/ClipRegion" unique_id=942960041 instance=ExtResource("1_gx327")]
+unique_name_in_owner = true
 layout_mode = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=627182048]
