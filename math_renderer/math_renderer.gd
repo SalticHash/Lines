@@ -8,10 +8,12 @@ func _process(delta: float) -> void:
 	view.size = size / 60
 	var dir = Input.get_vector(&"ui_left", &"ui_right", &"ui_down", &"ui_up")
 	view.position += delta * dir * 60 * Vector2(view.size.x / size.x, view.size.y / size.y)
-	cm += Input.get_axis(&"test_left", &"test_right") * 60 * delta * 0.085
+	cm += Input.get_axis(&"test_left", &"test_right") * delta * TAU * (1.0/2.0)
 	cb += Input.get_axis(&"test_down", &"test_up") * 60 * delta * 0.125
-	$Line.m = snapped(cm, 0.25)
-	$Line.b = snapped(cb, 1)
+	var a = snappedf(cm, PI/8.0)
+	if abs(tan(a)) < PI:
+		$Line.m = tan(a)
+		$Line.b = 1 / sin(PI / 2 - a) - ($Line.m * 0)
 	queue_redraw()
 
 func _draw() -> void:

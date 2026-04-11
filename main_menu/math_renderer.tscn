@@ -15,7 +15,7 @@ script = ExtResource("1_4k6sn")
 
 [node name="Circle" type="Node" parent="." unique_id=154076372]
 script = ExtResource("3_wrt2o")
-position = Vector2(5, 0)
+position = Vector2(5, 1)
 metadata/_custom_type_script = "uid://bg6y2ga0ex1b"
 
 [node name="Circle2" type="Node" parent="." unique_id=1309300069]

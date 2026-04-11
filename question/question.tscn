@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://coeg0r8mt3scm"]
+
+[ext_resource type="PackedScene" uid="uid://b5e1r2soagjcc" path="res://main_menu/math_renderer.tscn" id="1_gx327"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gx327"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gx327"]
+
+[sub_resource type="Theme" id="Theme_gx327"]
+default_font_size = 24
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/styles/normal = SubResource("StyleBoxFlat_gx327")
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/font_sizes/font_size = 48
+LineEdit/colors/caret_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_placeholder_color = Color(0, 0, 0, 0.39215687)
+LineEdit/colors/font_selected_color = Color(0, 0, 0, 1)
+LineEdit/colors/selection_color = Color(0, 0.40392157, 1, 0.4745098)
+LineEdit/styles/normal = SubResource("StyleBoxEmpty_gx327")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t81u5"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+
+[node name="Question" type="Control" unique_id=1499582251]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_gx327")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1794951517]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = 21.0
+offset_right = -31.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=359418146]
+layout_mode = 2
+text = "¿La linea es perpendicular?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=709655124]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer" unique_id=573443328]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+text = "Las funciones de las lineas son:
+y = 1x + 5
+y = 6x + 1"
+
+[node name="RendererPanel" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=1028748412]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.75
+
+[node name="ClipRegion" type="ColorRect" parent="VBoxContainer/HBoxContainer/RendererPanel" unique_id=1934813876]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 20.0
+offset_right = -22.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MathRenderer" parent="VBoxContainer/HBoxContainer/RendererPanel/ClipRegion" unique_id=942960041 instance=ExtResource("1_gx327")]
+layout_mode = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=627182048]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer2" unique_id=1642484632]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_t81u5")
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer2/Panel" unique_id=1369028819]
+layout_mode = 0
+anchor_left = 0.027906977
+anchor_right = 0.97209305
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+placeholder_text = "Respuesta"
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=592395678]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+text = "Enviar Respuesta"
