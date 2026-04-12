@@ -88,6 +88,7 @@ func generate_line_line_problem():
 	var variation = LineLineProblem.values().pick_random()
 	answer = variation
 	var line1 = Line.new()
+	var line2 = Line.new()
 	
 	var vertical = randi_range(0, 1)
 	if vertical:
@@ -110,24 +111,21 @@ func generate_line_line_problem():
 			Vector2(render.view.position.x, left_point),
 			Vector2(render.view.end.x, right_point),
 		)
-	var line2 = Line.new()
+	
 	match variation:
 		LineLineProblem.PARALLEL:
 			line2.m = line1.m
 			if vertical: line2.b = line1.b + half_n_half(-3.0, -1.0, 1.0, 3.0, 0.25) * line1.m
 			else: line2.b = line1.b + half_n_half(-3.0, -1.0, 1.0, 3.0, 0.25)
-		LineLineProblem.SECANT:
+		LineLineProblem.SECANT, LineLineProblem.PERPENDICULAR:
 			var offset: Vector2
 			if vertical: offset = line1.get_point_at_y(rand_range(render.view.position.y, render.view.end.y, 0.25))
 			else: offset = line1.get_point_at_x(rand_range(render.view.position.x, render.view.end.x, 0.25))
-			var angle = (atan(line1.m) + PI / 2) + half_n_half(-PI/4.0, -PI/8.0, PI/8.0, PI/4.0, PI/8.0)
-			line2.m = tan(angle)
-			line2.b = offset.y + line2.m * -offset.x
-		LineLineProblem.PERPENDICULAR:
-			var offset: Vector2
-			if vertical: offset = line1.get_point_at_y(rand_range(render.view.position.y, render.view.end.y, 0.25))
-			else: offset = line1.get_point_at_x(rand_range(render.view.position.x, render.view.end.x, 0.25))
-			line2.m = -1.0 / line1.m
+			if variation == LineLineProblem.PERPENDICULAR:
+				line2.m = -1.0 / line1.m
+			if variation == LineLineProblem.SECANT:
+				var angle = (atan(line1.m) + PI / 2) + half_n_half(-PI/4.0, -PI/8.0, PI/8.0, PI/4.0, PI/8.0)
+				line2.m = tan(angle)
 			line2.b = offset.y + line2.m * -offset.x
 
 	
@@ -147,8 +145,3 @@ func answered(option: int) -> void:
 	else:
 		$Wrong.play()
 	generate_problem()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
-		get_tree().reload_current_scene()
