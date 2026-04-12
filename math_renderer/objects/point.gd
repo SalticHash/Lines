@@ -5,3 +5,6 @@ class_name Point
 func _init(_position_or_x, _y: float = NAN) -> void:
 	if !is_nan(_y): position = Vector2(_position_or_x, _y)
 	else: position = _position_or_x
+
+func _to_string() -> String:
+	return "(%.3f, %.3f)" % [position.x, position.y]

@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://b5e1r2soagjcc" path="res://main_menu/math_renderer.tscn" id="1_gx327"]
 [ext_resource type="Script" uid="uid://c6g6vh46bg7vj" path="res://question/question.gd" id="1_t81u5"]
+[ext_resource type="AudioStream" uid="uid://dbwr7fkv6xwl2" path="res://assets/correct.mp3" id="3_fbtf6"]
+[ext_resource type="AudioStream" uid="uid://cj8262uo1ldm" path="res://assets/wrong.mp3" id="4_bpgso"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gx327"]
 bg_color = Color(1, 1, 1, 1)
@@ -73,7 +75,8 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.25
+size_flags_stretch_ratio = 0.4
+bbcode_enabled = true
 text = "Las funciones de las lineas son:
 y = 1x + 5
 y = 6x + 1"
@@ -81,7 +84,7 @@ y = 6x + 1"
 [node name="RendererPanel" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=1028748412]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.75
+size_flags_stretch_ratio = 0.5
 
 [node name="ClipRegion" type="ColorRect" parent="VBoxContainer/HBoxContainer/RendererPanel" unique_id=1934813876]
 clip_children = 2
@@ -106,6 +109,7 @@ layout_mode = 2
 theme_override_constants/separation = 16
 
 [node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer2" unique_id=1642484632]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_t81u5")
@@ -119,7 +123,29 @@ size_flags_horizontal = 3
 placeholder_text = "Respuesta"
 metadata/_edit_use_anchors_ = true
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=592395678]
+[node name="Button1" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=592395678]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Enviar Respuesta"
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=2056911405]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Enviar Respuesta"
+
+[node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=304349226]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Enviar Respuesta"
+
+[node name="Correct" type="AudioStreamPlayer" parent="." unique_id=1583523733]
+stream = ExtResource("3_fbtf6")
+
+[node name="Wrong" type="AudioStreamPlayer" parent="." unique_id=1748500818]
+stream = ExtResource("4_bpgso")
