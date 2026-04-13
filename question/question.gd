@@ -30,11 +30,30 @@ func _ready() -> void:
 	%Button1.pressed.connect(answered.bind(0))
 	%Button2.pressed.connect(answered.bind(1))
 	%Button3.pressed.connect(answered.bind(2))
+	
 	generate_problem()
+	await get_tree().process_frame
+	update_rect()
+	%MathRenderer.resized.connect(update_rect)
 
+func update_rect():
+	var render = %MathRenderer
+	var view = render.view
+	var ssize = render.size
+	render.view.size.y = 10
+	render.view.size.x = ssize.x * (view.size.y / ssize.y)
+	render.view.position = render.view.size / -2.0
 func generate_problem():
 	for last_shape in %MathRenderer.get_children():
 		last_shape.queue_free()
+		
+	if Global.mode == Global.Modes.LineLine:
+		generate_line_line_problem()
+		return
+	if Global.mode == Global.Modes.CircleLine:
+		generate_circle_line_problem()
+		return
+	
 	var probType: ProblemType = ProblemType.values().pick_random()
 	problem = probType
 	match probType:
@@ -44,9 +63,9 @@ func generate_problem():
 func generate_circle_line_problem():
 	var render = %MathRenderer
 		
-	%Button1.text = "SECANT"
-	%Button2.text = "TANGENT"
-	%Button3.text = "EXTERIOR"
+	%Button1.text = TranslationServer.translate("circle_line_option1")
+	%Button2.text = TranslationServer.translate("circle_line_option2")
+	%Button3.text = TranslationServer.translate("circle_line_option3")
 	var variation = CircleLineProblem.values().pick_random()
 	answer = variation
 	var r = rand_range(0.5, 2.5, 0.25)
@@ -74,17 +93,17 @@ func generate_circle_line_problem():
 	
 	line.color = Color.from_hsv(randf(), 1.0, 1.0)
 	circle.color = Color.from_hsv(randf(), 1.0, 1.0)
-	%Title.text = "CircleLine"
-	%Desc.text = CircleLineProblem.find_key(variation) + \
-	"\n" + "[color=%s]%s[/color]" % [circle.color.to_html(), str(circle)] + \
+	%Title.text = TranslationServer.translate("circle_line_problem_title")
+	%Desc.text = \
+	"[color=%s]%s[/color]" % [circle.color.to_html(), str(circle)] + \
 	"\n" + "[color=%s]%s[/color]" % [line.color.to_html(), str(line)]
 
 func generate_line_line_problem():
 	var render = %MathRenderer
 	
-	%Button1.text = "SECANT"
-	%Button2.text = "PERPENDICULAR"
-	%Button3.text = "PARALLEL"
+	%Button1.text = TranslationServer.translate("line_line_option1")
+	%Button2.text = TranslationServer.translate("line_line_option2")
+	%Button3.text = TranslationServer.translate("line_line_option3")
 	var variation = LineLineProblem.values().pick_random()
 	answer = variation
 	var line1 = Line.new()
@@ -134,9 +153,9 @@ func generate_line_line_problem():
 	render.add_child(line1)
 	render.add_child(line2)
 	
-	%Title.text = "LineLine"
-	%Desc.text = LineLineProblem.find_key(variation) + \
-	"\n" + "[color=%s]%s[/color]" % [line1.color.to_html(), str(line1)] + \
+	%Title.text = TranslationServer.translate("line_line_problem_title")
+	%Desc.text = \
+	"[color=%s]%s[/color]" % [line1.color.to_html(), str(line1)] + \
 	"\n" + "[color=%s]%s[/color]" % [line2.color.to_html(), str(line2)]
 
 func answered(option: int) -> void:

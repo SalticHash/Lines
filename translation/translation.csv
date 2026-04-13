@@ -1,4 +1,14 @@
 key	en	es
 game_name	Lines	Lineas
-topic_parallel	Parallel & Perpendicular Lines	Rectas Paralelas y Perpendiculares
-topic_secant	Secant, Tangent & Exterior Lines	Rectas Secantes, Tangentes y Exteriores
+topic_line_line	Parallel & Perpendicular Lines	Rectas Paralelas y Perpendiculares
+topic_circle_line	Secant, Tangent & Exterior Lines	Rectas Secantes, Tangentes y Exteriores
+topic_mixed	Mixed	Mixto
+line_line_problem_title	What type of line-line intersection is this?	¿Que tipo de inteseccion linea-linea es esta?
+line_line_option1	Secant	Secante
+line_line_option2	Perpendicular	Perpendicular
+line_line_option3	Parallel	Paralela
+
+circle_line_problem_title	What type of circle-line intersection is this?	¿Que tipo de inteseccion linea-circulo es esta?
+circle_line_option1	Secant	Secante
+circle_line_option2	Tangent	Tangente
+circle_line_option3	Exterior	Externa

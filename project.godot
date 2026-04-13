@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Lines"
+run/main_scene="uid://cuhbrh76x1yt1"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*uid://cpui6fupj6s7x"
 
 [editor_plugins]
 

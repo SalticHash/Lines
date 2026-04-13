@@ -1,6 +1,31 @@
 [gd_scene format=3 uid="uid://cuhbrh76x1yt1"]
 
-[ext_resource type="Theme" uid="uid://cmo5b0nj4476i" path="res://menu.theme" id="1_oa53l"]
+[ext_resource type="Script" uid="uid://c16t0a15puec1" path="res://main_menu/main_menu.gd" id="1_oa53l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gx327"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gx327"]
+
+[sub_resource type="Theme" id="Theme_1h4yd"]
+default_font_size = 24
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/styles/normal = SubResource("StyleBoxFlat_gx327")
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/font_sizes/font_size = 48
+LineEdit/colors/caret_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_placeholder_color = Color(0, 0, 0, 0.39215687)
+LineEdit/colors/font_selected_color = Color(0, 0, 0, 1)
+LineEdit/colors/selection_color = Color(0, 0.40392157, 1, 0.4745098)
+LineEdit/styles/normal = SubResource("StyleBoxEmpty_gx327")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="Control" unique_id=1777463391]
 layout_mode = 3
@@ -9,7 +34,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_oa53l")
+theme = SubResource("Theme_1h4yd")
+script = ExtResource("1_oa53l")
 
 [node name="Title" type="Label" parent="." unique_id=407719428]
 layout_mode = 1
@@ -23,32 +49,53 @@ offset_bottom = 251.0
 grow_horizontal = 2
 text = "game_name"
 
-[node name="Parallel" type="Button" parent="." unique_id=1897779134]
+[node name="LineLine" type="Button" parent="." unique_id=1897779134]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -159.0
+offset_left = -264.0
 offset_top = -38.5
-offset_right = 159.0
+offset_right = 264.0
 offset_bottom = 38.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "topic_parallel"
+text = "topic_line_line"
 
-[node name="Secant" type="Button" parent="." unique_id=891871105]
+[node name="ToggleLanguage" type="Button" parent="." unique_id=477943895]
+layout_mode = 1
+offset_right = 318.0
+offset_bottom = 77.0
+text = "English"
+
+[node name="CircleLine" type="Button" parent="." unique_id=891871105]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -148.0
+offset_left = -264.0
 offset_top = 65.5
-offset_right = 148.0
+offset_right = 264.0
 offset_bottom = 142.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "topic_secant"
+text = "topic_circle_line"
+
+[node name="Mixed" type="Button" parent="." unique_id=1994210896]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -264.0
+offset_top = 169.5
+offset_right = 264.0
+offset_bottom = 246.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "topic_mixed"
