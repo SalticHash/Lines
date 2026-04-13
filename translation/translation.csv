@@ -12,3 +12,8 @@ circle_line_problem_title	What type of circle-line intersection is this?	¿Que t
 circle_line_option1	Secant	Secante
 circle_line_option2	Tangent	Tangente
 circle_line_option3	Exterior	Externa
+
+problem_count	Problems: %d✅ %d❌	Problemas: %d✅ %d❌
+time	Time: %02dm %02ds	Tiempo: %02dm %02ds
+finish	Finish	Terminar
+go_back	Go Back	Volver

@@ -62,10 +62,39 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 32
 
-[node name="Title" type="Label" parent="VBoxContainer" unique_id=359418146]
-unique_name_in_owner = true
+[node name="HBoxContainer3" type="VBoxContainer" parent="VBoxContainer" unique_id=1831535312]
 layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer3" unique_id=472086882]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer/HBoxContainer3/HBoxContainer" unique_id=359418146]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 3
 text = "¿La linea es perpendicular?"
+autowrap_mode = 2
+
+[node name="Finish" type="Button" parent="VBoxContainer/HBoxContainer3/HBoxContainer" unique_id=515317462]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+text = "finish"
+
+[node name="ProblemCount" type="Label" parent="VBoxContainer/HBoxContainer3" unique_id=839846710]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Problems: 0✅ 0❌"
+
+[node name="Time" type="Label" parent="VBoxContainer/HBoxContainer3" unique_id=452674693]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Time: 1m 20s"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=709655124]
 layout_mode = 2

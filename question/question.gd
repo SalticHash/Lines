@@ -27,6 +27,12 @@ func half_n_half(from1: float, to1: float, from2: float, to2: float, step: float
 var problem: ProblemType
 var answer: int
 func _ready() -> void:
+	Global.start_time = Time.get_ticks_msec()
+	Global.right = 0
+	Global.wrong = 0
+	%ProblemCount.text = TranslationServer.translate("problem_count") % [0, 0]
+	update_time()
+	%Finish.pressed.connect(finish)
 	%Button1.pressed.connect(answered.bind(0))
 	%Button2.pressed.connect(answered.bind(1))
 	%Button3.pressed.connect(answered.bind(2))
@@ -159,8 +165,22 @@ func generate_line_line_problem():
 	"\n" + "[color=%s]%s[/color]" % [line2.color.to_html(), str(line2)]
 
 func answered(option: int) -> void:
+	%ProblemCount.text = TranslationServer.translate("problem_count") % [Global.right, Global.wrong]
 	if option == answer:
 		$Correct.play()
+		Global.right += 1
 	else:
 		$Wrong.play()
+		Global.wrong += 1
 	generate_problem()
+
+func _process(_delta: float) -> void:
+	update_time()
+func update_time():
+	var seconds: float = (Time.get_ticks_msec() - Global.start_time) / 1000.0
+	var minutes: float = seconds / 60.0
+	seconds = fmod(seconds, 60.0)
+	%Time.text = TranslationServer.translate("time") % [minutes, seconds]
+
+func finish():
+	get_tree().change_scene_to_file("res://finish/finish.tscn")

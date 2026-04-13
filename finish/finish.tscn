@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://bc1t4oewvpwsu"]
+
+[ext_resource type="Script" uid="uid://cvydg07p88rnq" path="res://finish/finish.gd" id="1_hsrnd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gx327"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gx327"]
+
+[sub_resource type="Theme" id="Theme_87456"]
+default_font_size = 24
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/styles/normal = SubResource("StyleBoxFlat_gx327")
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/font_sizes/font_size = 48
+LineEdit/colors/caret_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_placeholder_color = Color(0, 0, 0, 0.39215687)
+LineEdit/colors/font_selected_color = Color(0, 0, 0, 1)
+LineEdit/colors/selection_color = Color(0, 0.40392157, 1, 0.4745098)
+LineEdit/styles/normal = SubResource("StyleBoxEmpty_gx327")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+
+[node name="Finish" type="Control" unique_id=1317585244]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_87456")
+script = ExtResource("1_hsrnd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1714274138]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -453.0
+offset_top = -134.0
+offset_right = 453.0
+offset_bottom = 134.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ProblemCount" type="Label" parent="VBoxContainer" unique_id=295056865]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 42
+text = "Problems: 0✅ 0❌"
+vertical_alignment = 1
+
+[node name="Time" type="Label" parent="VBoxContainer" unique_id=1421537350]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 42
+text = "Time: 1m 20s"
+vertical_alignment = 1
+
+[node name="GoBack" type="Button" parent="VBoxContainer" unique_id=350270400]
+layout_mode = 2
+size_flags_vertical = 3
+text = "go_back"
+
+[connection signal="pressed" from="VBoxContainer/GoBack" to="." method="_on_go_back_pressed"]
