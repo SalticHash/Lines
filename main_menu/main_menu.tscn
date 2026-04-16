@@ -1,31 +1,8 @@
 [gd_scene format=3 uid="uid://cuhbrh76x1yt1"]
 
+[ext_resource type="Theme" uid="uid://cmo5b0nj4476i" path="res://menu.theme" id="1_d3a7t"]
 [ext_resource type="Script" uid="uid://c16t0a15puec1" path="res://main_menu/main_menu.gd" id="1_oa53l"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gx327"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gx327"]
-
-[sub_resource type="Theme" id="Theme_1h4yd"]
-default_font_size = 24
-Button/colors/font_color = Color(0, 0, 0, 1)
-Button/styles/normal = SubResource("StyleBoxFlat_gx327")
-Label/colors/font_color = Color(0, 0, 0, 1)
-Label/font_sizes/font_size = 48
-LineEdit/colors/caret_color = Color(0, 0, 0, 1)
-LineEdit/colors/font_color = Color(0, 0, 0, 1)
-LineEdit/colors/font_placeholder_color = Color(0, 0, 0, 0.39215687)
-LineEdit/colors/font_selected_color = Color(0, 0, 0, 1)
-LineEdit/colors/selection_color = Color(0, 0.40392157, 1, 0.4745098)
-LineEdit/styles/normal = SubResource("StyleBoxEmpty_gx327")
-RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+[ext_resource type="PackedScene" uid="uid://bmm3770pgwypr" path="res://main_menu/button_animation/button_animation.tscn" id="3_3shxk"]
 
 [node name="MainMenu" type="Control" unique_id=1777463391]
 layout_mode = 3
@@ -34,7 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_1h4yd")
+theme = ExtResource("1_d3a7t")
 script = ExtResource("1_oa53l")
 
 [node name="Title" type="Label" parent="." unique_id=407719428]
@@ -64,11 +41,15 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "topic_line_line"
 
+[node name="ButtonAnimation" parent="LineLine" unique_id=1733346948 instance=ExtResource("3_3shxk")]
+
 [node name="ToggleLanguage" type="Button" parent="." unique_id=477943895]
 layout_mode = 1
 offset_right = 318.0
 offset_bottom = 77.0
 text = "English"
+
+[node name="ButtonAnimation" parent="ToggleLanguage" unique_id=396002798 instance=ExtResource("3_3shxk")]
 
 [node name="CircleLine" type="Button" parent="." unique_id=891871105]
 layout_mode = 1
@@ -85,6 +66,8 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "topic_circle_line"
 
+[node name="ButtonAnimation" parent="CircleLine" unique_id=446809416 instance=ExtResource("3_3shxk")]
+
 [node name="Mixed" type="Button" parent="." unique_id=1994210896]
 layout_mode = 1
 anchors_preset = 8
@@ -99,3 +82,5 @@ offset_bottom = 246.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "topic_mixed"
+
+[node name="ButtonAnimation" parent="Mixed" unique_id=1962996511 instance=ExtResource("3_3shxk")]

@@ -167,9 +167,11 @@ func generate_line_line_problem():
 func answered(option: int) -> void:
 	%ProblemCount.text = TranslationServer.translate("problem_count") % [Global.right, Global.wrong]
 	if option == answer:
+		$Wrong.stop()
 		$Correct.play()
 		Global.right += 1
 	else:
+		$Correct.stop()
 		$Wrong.play()
 		Global.wrong += 1
 	generate_problem()

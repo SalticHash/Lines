@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bmm3770pgwypr"]
+
+[ext_resource type="Script" uid="uid://0ln1c5e6dhbo" path="res://main_menu/button_animation/button_animation.gd" id="1_emfpg"]
+
+[node name="ButtonAnimation" type="Node" unique_id=1733346948]
+script = ExtResource("1_emfpg")

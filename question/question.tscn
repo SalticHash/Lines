@@ -1,34 +1,11 @@
 [gd_scene format=3 uid="uid://coeg0r8mt3scm"]
 
+[ext_resource type="Theme" uid="uid://cmo5b0nj4476i" path="res://menu.theme" id="1_bpgso"]
 [ext_resource type="PackedScene" uid="uid://b5e1r2soagjcc" path="res://main_menu/math_renderer.tscn" id="1_gx327"]
 [ext_resource type="Script" uid="uid://c6g6vh46bg7vj" path="res://question/question.gd" id="1_t81u5"]
 [ext_resource type="AudioStream" uid="uid://dbwr7fkv6xwl2" path="res://assets/correct.mp3" id="3_fbtf6"]
+[ext_resource type="PackedScene" uid="uid://bmm3770pgwypr" path="res://main_menu/button_animation/button_animation.tscn" id="3_q3ial"]
 [ext_resource type="AudioStream" uid="uid://cj8262uo1ldm" path="res://assets/wrong.mp3" id="4_bpgso"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gx327"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gx327"]
-
-[sub_resource type="Theme" id="Theme_gx327"]
-default_font_size = 24
-Button/colors/font_color = Color(0, 0, 0, 1)
-Button/styles/normal = SubResource("StyleBoxFlat_gx327")
-Label/colors/font_color = Color(0, 0, 0, 1)
-Label/font_sizes/font_size = 48
-LineEdit/colors/caret_color = Color(0, 0, 0, 1)
-LineEdit/colors/font_color = Color(0, 0, 0, 1)
-LineEdit/colors/font_placeholder_color = Color(0, 0, 0, 0.39215687)
-LineEdit/colors/font_selected_color = Color(0, 0, 0, 1)
-LineEdit/colors/selection_color = Color(0, 0.40392157, 1, 0.4745098)
-LineEdit/styles/normal = SubResource("StyleBoxEmpty_gx327")
-RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t81u5"]
 bg_color = Color(1, 1, 1, 1)
@@ -46,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_gx327")
+theme = ExtResource("1_bpgso")
 script = ExtResource("1_t81u5")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1794951517]
@@ -81,6 +58,8 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 text = "finish"
+
+[node name="ButtonAnimation" parent="VBoxContainer/HBoxContainer3/HBoxContainer/Finish" unique_id=1733346948 instance=ExtResource("3_q3ial")]
 
 [node name="ProblemCount" type="Label" parent="VBoxContainer/HBoxContainer3" unique_id=839846710]
 unique_name_in_owner = true
@@ -159,12 +138,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Enviar Respuesta"
 
+[node name="ButtonAnimation" parent="VBoxContainer/HBoxContainer2/Button1" unique_id=714947181 instance=ExtResource("3_q3ial")]
+
 [node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=2056911405]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Enviar Respuesta"
+
+[node name="ButtonAnimation" parent="VBoxContainer/HBoxContainer2/Button2" unique_id=1973582127 instance=ExtResource("3_q3ial")]
 
 [node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=304349226]
 unique_name_in_owner = true
@@ -173,8 +156,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Enviar Respuesta"
 
+[node name="ButtonAnimation" parent="VBoxContainer/HBoxContainer2/Button3" unique_id=80229682 instance=ExtResource("3_q3ial")]
+
 [node name="Correct" type="AudioStreamPlayer" parent="." unique_id=1583523733]
 stream = ExtResource("3_fbtf6")
+volume_db = -20.0
 
 [node name="Wrong" type="AudioStreamPlayer" parent="." unique_id=1748500818]
 stream = ExtResource("4_bpgso")
+volume_db = -20.0
