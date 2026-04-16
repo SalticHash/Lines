@@ -165,7 +165,6 @@ func generate_line_line_problem():
 	"\n" + "[color=%s]%s[/color]" % [line2.color.to_html(), str(line2)]
 
 func answered(option: int) -> void:
-	%ProblemCount.text = TranslationServer.translate("problem_count") % [Global.right, Global.wrong]
 	if option == answer:
 		$Wrong.stop()
 		$Correct.play()
@@ -174,6 +173,7 @@ func answered(option: int) -> void:
 		$Correct.stop()
 		$Wrong.play()
 		Global.wrong += 1
+	%ProblemCount.text = TranslationServer.translate("problem_count") % [Global.right, Global.wrong]
 	generate_problem()
 
 func _process(_delta: float) -> void:

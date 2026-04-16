@@ -13,7 +13,7 @@ circle_line_option1	Secant	Secante
 circle_line_option2	Tangent	Tangente
 circle_line_option3	Exterior	Externa
 
-problem_count	Problems: %d✅ %d❌	Problemas: %d✅ %d❌
+problem_count	Problems: %d Corect, %d Incorrect	Problemas: %d Correctas, %d Incorrectas
 time	Time: %02dm %02ds	Tiempo: %02dm %02ds
 finish	Finish	Terminar
 go_back	Go Back	Volver
