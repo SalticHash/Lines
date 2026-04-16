@@ -19,7 +19,11 @@ config/description="Practice line-line and circle-line intersections!"
 config/version="1.0"
 run/main_scene="uid://cuhbrh76x1yt1"
 config/features=PackedStringArray("4.6", "GL Compatibility")
+boot_splash/bg_color=Color(1, 1, 1, 1)
+boot_splash/stretch_mode=2
+boot_splash/image="uid://cqtu5fw4jjgpj"
 config/icon="uid://r8dwcqvs5efu"
+boot_splash/minimum_display_time=2000
 
 [autoload]
 
